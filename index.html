@@ -3,763 +3,358 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>SUSHIKRIS — Japanese Sushi</title>
-
+<title>SushiKris — Handcrafted Sushi</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+  :root{
+    --bg: #0e0e10;
+    --bg-card: #17171a;
+    --border: #2a2a2e;
+    --text: #f4f2ee;
+    --text-dim: #9a9a9f;
+    --accent: #ff7a3d;
+    --accent-dark: #d9642e;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 32px;}
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  /* Header */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(14,14,16,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 0;
+  }
+  .logo{
+    font-size:22px;font-weight:700;letter-spacing:-0.02em;
+    display:flex;align-items:center;gap:8px;
+  }
+  .logo span{color:var(--accent);}
+  .nav-links{display:flex;gap:34px;font-size:15px;color:var(--text-dim);}
+  .nav-links a{transition:color .2s;}
+  .nav-links a:hover, .nav-links a.active{color:var(--text);}
+  .btn{
+    display:inline-block;
+    padding:11px 24px;
+    border-radius:8px;
+    font-size:14.5px;
+    font-weight:600;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:transform .15s ease, background .2s ease, border-color .2s ease;
+  }
+  .btn:active{transform:scale(0.97);}
+  .btn-primary{background:var(--accent);color:#161616;}
+  .btn-primary:hover{background:var(--accent-dark);}
+  .btn-ghost{background:transparent;border-color:#3a3a3e;color:var(--text);}
+  .btn-ghost:hover{border-color:var(--text-dim);}
 
-html {
-  scroll-behavior: smooth;
-}
+  /* Hero */
+  .hero{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:40px;
+    padding:80px 0 60px;
+  }
+  .hero h1{
+    font-size:52px;
+    font-weight:700;
+    letter-spacing:-0.02em;
+    line-height:1.08;
+    margin-bottom:20px;
+  }
+  .hero p{
+    color:var(--text-dim);
+    font-size:16.5px;
+    max-width:420px;
+    margin-bottom:32px;
+  }
+  .hero-ctas{display:flex;gap:14px;}
 
-body {
-  background: #0d0d0d;
-  color: #f5f2ed;
-  font-family: "DM Sans", sans-serif;
-  overflow-x: hidden;
-}
+  .hero-visual{
+    position:relative;
+    height:460px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .stack-item{
+    position:absolute;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);
+    animation: float 6s ease-in-out infinite;
+  }
+  .stack-item img{width:100%;height:100%;object-fit:cover;}
+  .stack-1{width:230px;height:150px;top:0;right:40px;animation-delay:0s;z-index:3;transform:rotate(-4deg);}
+  .stack-2{width:190px;height:190px;top:150px;left:20px;animation-delay:1.2s;z-index:2;transform:rotate(3deg);}
+  .stack-3{width:210px;height:130px;bottom:30px;right:70px;animation-delay:2.4s;z-index:1;transform:rotate(-2deg);}
 
-/* NAVIGATION */
+  @keyframes float{
+    0%,100%{transform:translateY(0) rotate(var(--r,0deg));}
+    50%{transform:translateY(-16px) rotate(var(--r,0deg));}
+  }
+  .stack-1{--r:-4deg;}
+  .stack-2{--r:3deg;}
+  .stack-3{--r:-2deg;}
 
-header {
-  height: 90px;
-  padding: 0 7%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid rgba(255,255,255,.08);
-}
-
-.logo {
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: -1px;
-}
-
-.logo span {
-  color: #e86f3d;
-}
-
-nav {
-  display: flex;
-  gap: 35px;
-}
-
-nav a {
-  color: #aaa;
-  text-decoration: none;
-  font-size: 14px;
-  transition: .3s;
-}
-
-nav a:hover {
-  color: #fff;
-}
-
-.cart {
-  border: 1px solid rgba(255,255,255,.15);
-  background: transparent;
-  color: white;
-  padding: 11px 18px;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: .3s;
-}
-
-.cart:hover {
-  background: #fff;
-  color: #111;
-}
-
-/* HERO */
-
-.hero {
-  min-height: 700px;
-  padding: 70px 7%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-}
-
-.hero-content {
-  max-width: 570px;
-  z-index: 2;
-}
-
-.eyebrow {
-  color: #e86f3d;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 4px;
-  margin-bottom: 25px;
-}
-
-h1 {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(60px, 8vw, 110px);
-  line-height: .88;
-  font-weight: 600;
-  letter-spacing: -5px;
-}
-
-h1 span {
-  color: #e86f3d;
-  font-style: italic;
-}
-
-.hero-text {
-  color: #8e8e8e;
-  font-size: 16px;
-  line-height: 1.7;
-  max-width: 420px;
-  margin-top: 30px;
-}
-
-.hero-button {
-  margin-top: 32px;
-  padding: 16px 28px;
-  border: none;
-  border-radius: 50px;
-  background: #e86f3d;
-  color: white;
-  font-weight: 700;
-  cursor: pointer;
-  transition: .3s;
-}
-
-.hero-button:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 35px rgba(232,111,61,.25);
-}
-
-/* SUSHI VISUAL */
-
-.sushi-wrapper {
-  width: 470px;
-  height: 470px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.glow {
-  position: absolute;
-  width: 360px;
-  height: 360px;
-  border-radius: 50%;
-  background: rgba(232,111,61,.12);
-  filter: blur(60px);
-  animation: pulse 4s infinite;
-}
-
-.plate {
-  width: 380px;
-  height: 380px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at center,
-    #202020 0%,
-    #171717 55%,
-    #101010 70%,
-    #252525 71%,
-    #101010 73%);
-  box-shadow:
-    0 40px 80px rgba(0,0,0,.6),
-    inset 0 0 30px rgba(255,255,255,.03);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: float 5s ease-in-out infinite;
-  position: relative;
-}
-
-/* realistic CSS sushi */
-
-.sushi {
-  width: 210px;
-  height: 150px;
-  position: relative;
-  transform: rotate(-7deg);
-  filter: drop-shadow(0 25px 18px rgba(0,0,0,.7));
-}
-
-.rice {
-  position: absolute;
-  width: 190px;
-  height: 125px;
-  left: 10px;
-  top: 20px;
-  background:
-    radial-gradient(circle at 20% 30%, #fff 0 5%, transparent 6%),
-    radial-gradient(circle at 45% 65%, #ddd 0 4%, transparent 5%),
-    radial-gradient(circle at 70% 35%, #fff 0 5%, transparent 6%),
-    radial-gradient(circle at 85% 70%, #d7d7d7 0 4%, transparent 5%),
-    linear-gradient(145deg, #f8f5ef, #d5d0c8);
-  border-radius: 45% 45% 40% 40%;
-}
-
-.salmon {
-  position: absolute;
-  width: 185px;
-  height: 62px;
-  left: 13px;
-  top: 7px;
-  border-radius: 45px 45px 25px 25px;
-  background:
-    repeating-linear-gradient(
-      12deg,
-      #ff7658 0px,
-      #ff7658 9px,
-      #d94f38 10px,
-      #ff8565 13px
-    );
-  box-shadow:
-    inset 0 -8px 15px rgba(100,20,10,.2),
-    inset 0 5px 10px rgba(255,255,255,.18);
-}
-
-.nori {
-  position: absolute;
-  width: 205px;
-  height: 25px;
-  left: 2px;
-  top: 78px;
-  background: linear-gradient(90deg,#101010,#252525,#101010);
-  border-radius: 20px;
-  opacity: .95;
-}
-
-.avocado {
-  position: absolute;
-  width: 50px;
-  height: 32px;
-  background: #9ba94d;
-  border-radius: 50%;
-  right: 30px;
-  top: 65px;
-  transform: rotate(20deg);
-  box-shadow: inset 8px 5px 10px rgba(255,255,255,.18);
-}
-
-.sesame {
-  position: absolute;
-  width: 7px;
-  height: 4px;
-  background: #eee6c9;
-  border-radius: 50%;
-  transform: rotate(30deg);
-}
-
-.s1 { top: 30px; left: 55px; }
-.s2 { top: 42px; left: 100px; transform: rotate(-20deg); }
-.s3 { top: 28px; left: 135px; transform: rotate(40deg); }
-.s4 { top: 52px; left: 155px; transform: rotate(-30deg); }
-
-@keyframes float {
-  0%,100% {
-    transform: translateY(0) rotate(0deg);
+  @media (prefers-reduced-motion: reduce){
+    .stack-item{animation:none;}
   }
 
-  50% {
-    transform: translateY(-13px) rotate(2deg);
+  /* Popular Rolls */
+  .rolls-section{padding:50px 0 100px;}
+  .rolls-header{
+    display:flex;align-items:flex-end;justify-content:space-between;
+    margin-bottom:28px;
   }
-}
-
-@keyframes pulse {
-  0%,100% {
-    transform: scale(.95);
-    opacity: .6;
+  .rolls-header h2{font-size:28px;font-weight:700;}
+  .rolls-nav{display:flex;gap:10px;}
+  .rolls-nav button{
+    width:38px;height:38px;border-radius:50%;
+    background:var(--bg-card);border:1px solid var(--border);
+    color:var(--text);font-size:16px;cursor:pointer;
+    transition:background .2s;
   }
+  .rolls-nav button:hover{background:#212124;}
 
-  50% {
-    transform: scale(1.1);
-    opacity: 1;
+  .rolls-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:20px;
   }
-}
-
-/* FLOATING INGREDIENTS */
-
-.floating {
-  position: absolute;
-  font-size: 28px;
-  animation: floating 5s ease-in-out infinite;
-  opacity: .8;
-}
-
-.f1 {
-  top: 35px;
-  right: 60px;
-}
-
-.f2 {
-  bottom: 35px;
-  left: 30px;
-  animation-delay: 1s;
-}
-
-.f3 {
-  top: 130px;
-  left: 0;
-  animation-delay: 2s;
-}
-
-@keyframes floating {
-  0%,100% {
-    transform: translateY(0) rotate(0);
+  .roll-card{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:12px;
+    cursor:pointer;
+    transition:border-color .2s ease, transform .2s ease;
   }
-
-  50% {
-    transform: translateY(-18px) rotate(12deg);
+  .roll-card:hover{transform:translateY(-4px);}
+  .roll-card.selected{
+    border-color:var(--accent);
+    box-shadow:0 0 0 1px var(--accent);
   }
-}
+  .roll-card .thumb{
+    width:100%;aspect-ratio:1/1;border-radius:10px;overflow:hidden;margin-bottom:12px;
+  }
+  .roll-card .thumb img{width:100%;height:100%;object-fit:cover;}
+  .roll-card h3{font-size:15.5px;font-weight:600;margin-bottom:4px;}
+  .roll-card .price{color:var(--accent);font-weight:600;font-size:14px;}
 
-/* MENU */
+  /* Detail panel */
+  .roll-detail{
+    margin-top:32px;
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:28px 32px;
+    display:grid;
+    grid-template-columns:120px 1fr auto;
+    align-items:center;
+    gap:26px;
+    transition:opacity .25s ease;
+  }
+  .roll-detail .detail-thumb{
+    width:120px;height:120px;border-radius:14px;overflow:hidden;
+  }
+  .roll-detail .detail-thumb img{width:100%;height:100%;object-fit:cover;}
+  .roll-detail h4{font-size:19px;font-weight:700;margin-bottom:6px;}
+  .roll-detail p{color:var(--text-dim);font-size:14.5px;max-width:460px;}
+  .roll-detail .detail-price{font-size:26px;font-weight:700;color:var(--accent);white-space:nowrap;}
 
-.menu {
-  padding: 110px 7%;
-  background: #121212;
-}
-
-.section-label {
-  color: #e86f3d;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 4px;
-  margin-bottom: 12px;
-}
-
-.section-heading {
-  font-family: "Playfair Display", serif;
-  font-size: 58px;
-  margin-bottom: 55px;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 22px;
-}
-
-.card {
-  background: #191919;
-  border: 1px solid rgba(255,255,255,.06);
-  border-radius: 24px;
-  padding: 18px;
-  transition: .4s;
-}
-
-.card:hover {
-  transform: translateY(-10px);
-  border-color: rgba(232,111,61,.35);
-}
-
-.card-image {
-  height: 220px;
-  border-radius: 18px;
-  background: #242424;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.food {
-  font-size: 100px;
-  filter: drop-shadow(0 20px 15px rgba(0,0,0,.5));
-  transition: .4s;
-}
-
-.card:hover .food {
-  transform: scale(1.1) rotate(4deg);
-}
-
-.card-info {
-  padding: 20px 5px 5px;
-}
-
-.card h3 {
-  font-family: "Playfair Display", serif;
-  font-size: 25px;
-}
-
-.description {
-  color: #777;
-  font-size: 13px;
-  margin: 8px 0 20px;
-}
-
-.price-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.price {
-  color: #e86f3d;
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.add {
-  width: 40px;
-  height: 40px;
-  border: none;
-  border-radius: 50%;
-  background: #eee;
-  color: #111;
-  font-size: 20px;
-  cursor: pointer;
-  transition: .3s;
-}
-
-.add:hover {
-  background: #e86f3d;
-  color: white;
-  transform: rotate(90deg);
-}
-
-/* ABOUT */
-
-.about {
-  padding: 120px 7%;
-  text-align: center;
-}
-
-.about h2 {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(45px,6vw,75px);
-  line-height: 1;
-}
-
-.about h2 span {
-  color: #e86f3d;
-  font-style: italic;
-}
-
-.about p {
-  max-width: 550px;
-  margin: 25px auto 0;
-  color: #777;
-  line-height: 1.8;
-}
-
-/* FOOTER */
-
-footer {
-  padding: 30px 7%;
-  border-top: 1px solid rgba(255,255,255,.08);
-  display: flex;
-  justify-content: space-between;
-  color: #666;
-  font-size: 13px;
-}
-
-/* MOBILE */
-
-@media(max-width: 850px) {
-
-  header {
-    height: 75px;
+  footer{
+    border-top:1px solid var(--border);
+    padding:26px 0;
+    text-align:center;
+    color:var(--text-dim);
+    font-size:13.5px;
   }
 
-  nav {
-    display: none;
+  @media (max-width: 880px){
+    .hero{grid-template-columns:1fr;padding-top:40px;}
+    .hero h1{font-size:38px;}
+    .hero-visual{height:320px;margin-top:20px;}
+    .nav-links{display:none;}
+    .rolls-grid{grid-template-columns:repeat(2,1fr);}
+    .roll-detail{grid-template-columns:80px 1fr;grid-template-rows:auto auto;}
+    .roll-detail .detail-price{grid-column:2;}
   }
-
-  .hero {
-    flex-direction: column;
-    text-align: center;
-    padding-top: 60px;
-  }
-
-  .hero-text {
-    margin: auto;
-  }
-
-  .hero-text p {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .sushi-wrapper {
-    width: 100%;
-    height: 390px;
-    margin-top: 30px;
-  }
-
-  .plate {
-    width: 320px;
-    height: 320px;
-  }
-
-  .cards {
-    grid-template-columns: 1fr;
-  }
-
-  .section-heading {
-    font-size: 45px;
-  }
-
-  footer {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
 </style>
 </head>
-
 <body>
 
 <header>
-
-  <div class="logo">
-    SUSHI<span>KRIS</span>
+  <div class="wrap nav">
+    <div class="logo">Sushi<span>Kris</span></div>
+    <nav class="nav-links">
+      <a href="#" class="active">Home</a>
+      <a href="#rolls">Menu</a>
+      <a href="#">Recipes</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+    <a href="#" class="btn btn-primary">Order Online</a>
   </div>
-
-  <nav>
-<a href="#menu">Menu</a>
-    <a href="#about">About</a>
-  </nav>
-
-  <button class="cart">
-    Cart <span id="cartCount">0</span>
-  </button>
-
 </header>
 
-
-<section class="hero">
-
-  <div class="hero-content">
-
-    <div class="eyebrow">
-      JAPANESE FOOD · MADE WITH LOVE
+<section class="hero wrap">
+  <div>
+    <h1>Fresh Sushi Art<br>in Every Bite</h1>
+    <p>We blend tradition, creativity and only the freshest ingredients so every roll is a small work of art.</p>
+    <div class="hero-ctas">
+      <a href="#rolls" class="btn btn-primary">Explore Menu</a>
+      <a href="#" class="btn btn-ghost">Learn More</a>
     </div>
-
-    <h1>
-      Taste the<br>
-      <span>art</span> of sushi.
-    </h1>
-
-    <p class="hero-text">
-      Fresh ingredients, beautiful details and
-      a little bit of Japanese soul. Discover
-      sushi made to make you smile.
-    </p>
-
-    <button class="hero-button" onclick="goToMenu()">
-      Explore the menu →
-    </button>
-
   </div>
 
-
-  <div class="sushi-wrapper">
-
-    <div class="glow"></div>
-
-    <div class="floating f1">🥑</div>
-    <div class="floating f2">🍋</div>
-    <div class="floating f3">🌿</div>
-
-    <div class="plate">
-
-      <div class="sushi">
-
-        <div class="rice"></div>
-        <div class="salmon"></div>
-        <div class="nori"></div>
-        <div class="avocado"></div>
-
-        <div class="sesame s1"></div>
-        <div class="sesame s2"></div>
-        <div class="sesame s3"></div>
-        <div class="sesame s4"></div>
-
-      </div>
-
+  <div class="hero-visual">
+    <div class="stack-item stack-1">
+      <img src="https://images.unsplash.com/photo-1584583570840-0a3d88497e08?auto=format&fit=crop&w=400&q=80" alt="Salmon nigiri">
     </div>
-
+    <div class="stack-item stack-2">
+      <img src="https://images.unsplash.com/photo-1617196034183-421b4917c92d?auto=format&fit=crop&w=400&q=80" alt="Rice">
+    </div>
+    <div class="stack-item stack-3">
+      <img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?auto=format&fit=crop&w=400&q=80" alt="Cucumber">
+    </div>
   </div>
-
 </section>
 
-
-<section class="menu" id="menu">
-
-  <div class="section-label">
-    OUR SELECTION
+<section class="rolls-section wrap" id="rolls">
+  <div class="rolls-header">
+    <h2>Popular Rolls</h2>
+    <div class="rolls-nav">
+      <button id="prevBtn" aria-label="Previous">←</button>
+      <button id="nextBtn" aria-label="Next">→</button>
+    </div>
   </div>
 
-  <h2 class="section-heading">
-    Choose your favorite.
-  </h2>
+  <div class="rolls-grid" id="rollsGrid"></div>
 
-
-  <div class="cards">
-
-    <div class="card">
-
-      <div class="card-image">
-        <div class="food">🍣</div>
-      </div>
-
-      <div class="card-info">
-
-        <h3>Salmon Signature</h3>
-
-        <p class="description">
-          Fresh salmon · avocado · rice · nori
-        </p>
-
-        <div class="price-row">
-
-          <div class="price">
-            189 Kč
-          </div>
-
-          <button class="add" onclick="addToCart()">
-            +
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="card-image">
-        <div class="food">🍤</div>
-      </div>
-
-      <div class="card-info">
-
-        <h3>Shrimp Deluxe</h3>
-
-        <p class="description">
-          Crispy shrimp · avocado · spicy mayo
-        </p>
-
-        <div class="price-row">
-
-          <div class="price">
-            199 Kč
-          </div>
-
-          <button class="add" onclick="addToCart()">
-            +
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="card-image">
-        <div class="food">🍙</div>
-      </div>
-
-      <div class="card-info">
-
-        <h3>California</h3>
-
-        <p class="description">
-          Crab · cucumber · avocado · sesame
-        </p>
-
-        <div class="price-row">
-
-          <div class="price">
-            169 Kč
-          </div>
-
-          <button class="add" onclick="addToCart()">
-            +
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
+  <div class="roll-detail" id="rollDetail"></div>
 </section>
-
-
-<section class="about" id="about">
-
-  <div class="section-label">
-    SUSHIKRIS
-  </div>
-
-  <h2>
-    Good food.<br>
-    <span>Good mood.</span>
-  </h2>
-
-  <p>
-    SUSHIKRIS is a small creative concept
-    for a modern Japanese sushi brand.
-    Designed with simplicity, movement and
-    a love for beautiful food.
-  </p>
-
-</section>
-
 
 <footer>
-
-  <div>
-    © 2026 SUSHIKRIS
-  </div>
-
-  <div>
-    Made with love & sushi 🍣
-  </div>
-
+  © 2026 SushiKris. All rights reserved.
 </footer>
 
-
 <script>
+  const rolls = [
+    {
+      name: "Dragon Roll",
+      price: 12.50,
+      rating: "4.9",
+      img: "https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=500&q=80",
+      desc: "Eel, cucumber, avocado and unagi sauce on top, finished with sesame seeds."
+    },
+    {
+      name: "Spicy Tuna Roll",
+      price: 10.90,
+      rating: "4.8",
+      img: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=500&q=80",
+      desc: "Fresh tuna, spicy mayo, cucumber and scallion."
+    },
+    {
+      name: "Salmon Avocado",
+      price: 11.90,
+      rating: "4.9",
+      img: "https://images.unsplash.com/photo-1615361200141-f45040f367be?auto=format&fit=crop&w=500&q=80",
+      desc: "Delicate salmon with creamy avocado over steamed rice."
+    },
+    {
+      name: "Rainbow Roll",
+      price: 13.50,
+      rating: "5.0",
+      img: "https://images.unsplash.com/photo-1562158070-8c6459066bd6?auto=format&fit=crop&w=500&q=80",
+      desc: "An assortment of salmon, tuna and shrimp over a California roll."
+    },
+    {
+      name: "Ebi Tempura",
+      price: 10.50,
+      rating: "4.7",
+      img: "https://images.unsplash.com/photo-1526318472351-c75fcf070305?auto=format&fit=crop&w=500&q=80",
+      desc: "Crispy tempura shrimp, cucumber and unagi sauce."
+    },
+    {
+      name: "Philadelphia Roll",
+      price: 9.90,
+      rating: "4.8",
+      img: "https://images.unsplash.com/photo-1611243705617-6d3dcf8a2fda?auto=format&fit=crop&w=500&q=80",
+      desc: "Salmon, cream cheese and cucumber wrapped in soft rice."
+    }
+  ];
 
-let cart = 0;
+  const grid = document.getElementById('rollsGrid');
+  const detail = document.getElementById('rollDetail');
+  let visibleStart = 0;
+  const perPage = 4;
+  let selectedIndex = 0;
 
-function addToCart() {
-
-  cart++;
-
-  document.getElementById("cartCount").textContent = cart;
-
-}
-
-function goToMenu() {
-
-  document
-    .getElementById("menu")
-    .scrollIntoView({
-      behavior: "smooth"
+  function renderGrid(){
+    grid.innerHTML = '';
+    const slice = rolls.slice(visibleStart, visibleStart + perPage);
+    slice.forEach((roll) => {
+      const realIndex = rolls.indexOf(roll);
+      const card = document.createElement('div');
+      card.className = 'roll-card' + (realIndex === selectedIndex ? ' selected' : '');
+      card.innerHTML = `
+        <div class="thumb"><img src="${roll.img}" alt="${roll.name}"></div>
+        <h3>${roll.name}</h3>
+        <div class="price">$${roll.price.toFixed(2)}</div>
+      `;
+      card.addEventListener('click', () => {
+        selectedIndex = realIndex;
+        renderGrid();
+        renderDetail();
+      });
+      grid.appendChild(card);
     });
+  }
 
-}
+  function renderDetail(){
+    const roll = rolls[selectedIndex];
+    detail.style.opacity = 0;
+    setTimeout(() => {
+      detail.innerHTML = `
+        <div class="detail-thumb"><img src="${roll.img}" alt="${roll.name}"></div>
+        <div>
+          <h4>${roll.name}</h4>
+          <p>${roll.desc}</p>
+        </div>
+        <div class="detail-price">$${roll.price.toFixed(2)}</div>
+      `;
+      detail.style.opacity = 1;
+    }, 120);
+  }
 
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    visibleStart = (visibleStart - perPage + rolls.length) % rolls.length;
+    renderGrid();
+  });
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    visibleStart = (visibleStart + perPage) % rolls.length;
+    renderGrid();
+  });
+
+  renderGrid();
+  renderDetail();
 </script>
 
 </body>
