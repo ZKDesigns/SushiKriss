@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SUSHIKRIS — Sushi Experience</title>
+<title>SUSHIKRIS — Sushi Bar</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
 
 *{
   margin:0;
@@ -20,475 +20,516 @@ html{
 }
 
 body{
-  background:#090909;
-  color:#f7f4ef;
+  background:#0a0a0a;
+  color:#f4f0e9;
   font-family:"DM Sans",sans-serif;
 }
 
-/* NAV */
+/* HEADER */
 
 header{
-  height:85px;
-  padding:0 7%;
+  height:82px;
+  padding:0 6%;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  border-bottom:1px solid #222;
+  border-bottom:1px solid #242424;
   position:sticky;
   top:0;
-  z-index:20;
-  background:rgba(9,9,9,.9);
+  z-index:100;
+  background:rgba(10,10,10,.92);
   backdrop-filter:blur(15px);
 }
 
 .logo{
-  font-size:24px;
+  font-size:23px;
   font-weight:700;
   letter-spacing:-1px;
 }
 
 .logo span{
-  color:#e76f3c;
+  color:#d84b2f;
 }
 
 nav{
   display:flex;
-  gap:35px;
+  gap:32px;
 }
 
 nav a{
   color:#888;
   text-decoration:none;
-  font-size:14px;
-  transition:.3s;
+  font-size:13px;
 }
 
 nav a:hover{
-  color:white;
+  color:#fff;
 }
 
 .cart{
-  border:1px solid #333;
-  background:#151515;
-  color:white;
-  padding:11px 18px;
+  background:#f4f0e9;
+  color:#111;
+  border:0;
   border-radius:30px;
+  padding:10px 17px;
   cursor:pointer;
+  font-weight:600;
 }
 
 /* HERO */
 
 .hero{
-  min-height:720px;
-  padding:80px 7%;
-  display:flex;
+  min-height:650px;
+  padding:70px 6%;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
   align-items:center;
-  justify-content:space-between;
-  overflow:hidden;
 }
 
-.hero-content{
-  max-width:600px;
-  z-index:2;
+.hero-left{
+  max-width:650px;
 }
 
-.label{
-  color:#e76f3c;
-  font-size:11px;
+.kicker{
+  color:#d84b2f;
+  text-transform:uppercase;
+  font-size:10px;
   font-weight:700;
   letter-spacing:4px;
-  margin-bottom:25px;
+  margin-bottom:22px;
 }
 
-h1{
+.hero h1{
   font-family:"Playfair Display",serif;
-  font-size:clamp(60px,8vw,110px);
+  font-size:clamp(58px,8vw,105px);
   line-height:.88;
   letter-spacing:-5px;
+  font-weight:500;
 }
 
-h1 span{
-  color:#e76f3c;
-  font-style:italic;
+.hero h1 em{
+  color:#d84b2f;
 }
 
-.hero-description{
-  margin-top:30px;
-  color:#888;
-  max-width:450px;
+.hero-copy{
+  color:#777;
+  max-width:440px;
   line-height:1.8;
+  margin-top:30px;
 }
 
-.hero-button{
-  margin-top:32px;
-  background:#e76f3c;
-  color:white;
-  border:0;
-  padding:17px 28px;
-  border-radius:50px;
-  font-weight:700;
-  cursor:pointer;
-  transition:.3s;
-}
-
-.hero-button:hover{
-  transform:translateY(-4px);
-  box-shadow:0 15px 40px rgba(231,111,60,.25);
-}
-
-/* HERO SUSHI */
-
-.hero-sushi{
-  width:470px;
-  height:470px;
+.hero-actions{
   display:flex;
-  justify-content:center;
-  align-items:center;
-  position:relative;
+  gap:12px;
+  margin-top:30px;
 }
 
-.hero-sushi::before{
-  content:"";
-  position:absolute;
-  width:380px;
-  height:380px;
+.primary{
+  background:#d84b2f;
+  color:#fff;
+  border:0;
+  padding:15px 25px;
+  border-radius:30px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.secondary{
+  background:transparent;
+  color:#eee;
+  border:1px solid #333;
+  padding:15px 25px;
+  border-radius:30px;
+  cursor:pointer;
+}
+
+/* HERO IMAGE */
+
+.hero-visual{
+  min-height:450px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.hero-circle{
+  width:400px;
+  height:400px;
   border-radius:50%;
-  background:#151515;
+  background:
+    radial-gradient(circle at 35% 30%,#343434,#151515 55%,#090909);
   box-shadow:
     0 40px 100px rgba(0,0,0,.8),
-    inset 0 0 50px #000;
+    inset 0 0 60px #000;
+  position:absolute;
 }
 
-.big-roll{
-  width:220px;
-  height:220px;
+.sushi-stack{
+  width:250px;
+  height:250px;
   border-radius:50%;
   position:relative;
   z-index:2;
   background:
-    radial-gradient(circle at 30% 30%,#ffad8d,#e85e3c 30%,#9e3024 65%,#32100d);
-  border:15px solid #111;
+    radial-gradient(circle at 35% 25%,#ffb29b,#ed684c 25%,#9e3328 60%,#40120e);
+  border:17px solid #101010;
   box-shadow:
-    0 25px 45px #000,
-    inset 0 0 20px rgba(255,255,255,.2);
-  animation:float 5s ease-in-out infinite;
+    0 30px 45px #000,
+    inset 0 0 25px rgba(255,255,255,.15);
+  animation:levitate 5s infinite ease-in-out;
 }
 
-.big-roll::before{
+.sushi-stack:before{
   content:"";
   position:absolute;
-  width:65px;
-  height:65px;
+  width:90px;
+  height:90px;
   border-radius:50%;
+  top:62px;
+  left:62px;
   background:
-    radial-gradient(circle,#f4d879 0 18%,#718d35 19% 55%,#c7db70 56%);
-  top:65px;
-  left:65px;
+    radial-gradient(circle,#d9e39a 0 17%,#6d8736 18% 55%,#3f5023 56%);
   box-shadow:
-    0 0 0 8px #eee2c4,
-    0 0 0 16px #141414;
+    0 0 0 9px #f0dfbb,
+    0 0 0 18px #141414;
 }
 
-.big-roll::after{
+.sushi-stack:after{
   content:"";
   position:absolute;
-  width:18px;
-  height:18px;
+  width:9px;
+  height:5px;
   border-radius:50%;
-  background:#f1dfb0;
-  top:25px;
-  left:55px;
+  background:#f2ddb0;
+  top:38px;
+  left:70px;
   box-shadow:
-    70px 5px #e8d5a0,
-    100px 60px #f1dfb0,
-    30px 130px #e8d5a0;
+    50px 3px #f2ddb0,
+    90px 55px #e6d19e,
+    32px 130px #f2ddb0,
+    105px 105px #e6d19e;
 }
 
-@keyframes float{
-  0%,100%{transform:translateY(0) rotate(-5deg)}
-  50%{transform:translateY(-18px) rotate(5deg)}
+@keyframes levitate{
+  0%,100%{
+    transform:translateY(0) rotate(-5deg);
+  }
+  50%{
+    transform:translateY(-18px) rotate(5deg);
+  }
+}
+
+.stamp{
+  position:absolute;
+  right:5%;
+  bottom:8%;
+  width:100px;
+  height:100px;
+  border:1px solid #444;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-size:9px;
+  letter-spacing:2px;
+  color:#777;
 }
 
 /* MENU */
 
 .menu{
-  padding:110px 7%;
-  background:#101010;
+  background:#f1ede6;
+  color:#141414;
+  padding:100px 6%;
+  border-radius:35px 35px 0 0;
 }
 
-.menu-title{
+.menu-head{
   display:flex;
   justify-content:space-between;
   align-items:end;
-  margin-bottom:50px;
+  margin-bottom:40px;
 }
 
-.menu-title h2{
+.menu-head h2{
   font-family:"Playfair Display",serif;
   font-size:58px;
+  font-weight:500;
 }
 
-.menu-title p{
-  color:#666;
+.menu-head p{
+color:#777;
+  font-size:13px;
 }
 
-/* FILTERS */
+/* CATEGORIES */
 
-.filters{
+.categories{
   display:flex;
   gap:10px;
   margin-bottom:35px;
-  flex-wrap:wrap;
+  overflow-x:auto;
+  padding-bottom:5px;
 }
 
-.filter{
-  background:#181818;
-  color:#999;
-  border:1px solid #292929;
-  padding:10px 18px;
+.category{
+  border:1px solid #d5d0c8;
+  background:transparent;
+  padding:10px 20px;
   border-radius:30px;
+  white-space:nowrap;
   cursor:pointer;
   transition:.3s;
 }
 
-.filter:hover,
-.filter.active{
-  background:#e76f3c;
+.category:hover,
+.category.active{
+  background:#141414;
   color:white;
-  border-color:#e76f3c;
+  border-color:#141414;
 }
 
-/* CARDS */
+/* GRID */
 
-.cards{
+.menu-grid{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(3,1fr);
   gap:18px;
 }
 
-.card{
-  background:#181818;
-  border:1px solid #252525;
+.item{
+  background:#fff;
   border-radius:22px;
-  padding:14px;
+  padding:15px;
+  border:1px solid #e2ddd5;
   transition:.4s;
 }
 
-.card:hover{
-  transform:translateY(-8px);
-  border-color:#e76f3c;
+.item:hover{
+  transform:translateY(-7px);
+  box-shadow:0 20px 45px rgba(0,0,0,.08);
 }
 
-.sushi-image{
-  height:210px;
+.item-visual{
+  height:240px;
+  background:#e8e3db;
   border-radius:16px;
-  background:
-    radial-gradient(circle at center,#292929,#111);
   display:flex;
   align-items:center;
   justify-content:center;
-  position:relative;
   overflow:hidden;
+  position:relative;
 }
-
-/* ROLLS */
 
 .roll{
-  width:105px;
-  height:105px;
+  width:125px;
+  height:125px;
   border-radius:50%;
-  position:relative;
-  border:10px solid #101010;
-  box-shadow:0 20px 25px #000;
-  transition:.4s;
+  border:11px solid #171717;
+  box-shadow:0 25px 30px rgba(0,0,0,.35);
+  transition:.5s;
 }
 
-.card:hover .roll{
+.item:hover .roll{
   transform:scale(1.12) rotate(8deg);
 }
 
-/* salmon */
+/* DIFFERENT ROLLS */
 
 .salmon{
   background:
-    repeating-linear-gradient(
-      25deg,
-      #ff8061 0 9px,
-      #c84531 10px 13px,
-      #ff9877 14px 20px
-    );
+  repeating-linear-gradient(
+    25deg,
+    #ff9679 0 10px,
+    #d34e39 11px 14px,
+    #ffb09a 15px 21px
+  );
 }
-
-/* tuna */
 
 .tuna{
   background:
-    repeating-linear-gradient(
-      -20deg,
-      #d94343 0 10px,
-      #8e242b 11px 14px,
-      #ef6660 15px 21px
-    );
+  repeating-linear-gradient(
+    -18deg,
+    #e2534d 0 10px,
+    #a82f35 11px 15px,
+    #f1786c 16px 21px
+  );
 }
-
-/* avocado */
-
-.avocado{
-  background:
-    radial-gradient(circle at center,#8fa74c 0 35%,#50682d 36% 58%,#171717 59%);
-}
-
-/* shrimp */
 
 .shrimp{
   background:
     repeating-linear-gradient(
-      45deg,
-      #ff9a75 0 10px,
-      #db624b 11px 16px,
-      #ffc0a1 17px 22px
+      40deg,
+      #ffa078 0 11px,
+      #d75b48 12px 17px,
+      #ffc1a7 18px 23px
     );
 }
 
-/* veggie */
-
-.veggie{
+.avocado{
   background:
-    conic-gradient(
-      #789c43,
-      #f1c84b,
-      #df604c,
-      #789c43,
-      #eee0b5,
-      #789c43
-    );
+    radial-gradient(circle,#a8bd5b 0 30%,#617b36 31% 60%,#202817 61%);
 }
-
-/* dragon */
-
-.dragon{
-  background:
-    radial-gradient(circle at 35% 35%,#b6cf55 0 20%,transparent 21%),
-    radial-gradient(circle at 65% 60%,#e87b3c 0 20%,transparent 21%),
-    #252525;
-}
-
-/* rainbow */
 
 .rainbow{
   background:
     conic-gradient(
-      #e75a48,
-      #f1c84b,
-      #79a54a,
-      #4b8cb8,
-      #d95c9b,
-      #e75a48
+      #e55d51,
+      #efbf4c,
+      #759a48,
+      #4c83a7,
+      #d45d8e,
+      #e55d51
     );
 }
 
-/* spicy */
-
 .spicy{
   background:
-    radial-gradient(circle at 50% 50%,#f2b34b 0 18%,#d94a32 19% 42%,#721c1c 43% 65%,#151515 66%);
+    radial-gradient(
+      circle,
+      #f1b64d 0 18%,
+      #d94a32 19% 45%,
+      #7e2021 46% 67%,
+      #191919 68%
+    );
 }
 
-.card-info{
-  padding:18px 5px 5px;
+.dragon{
+  background:
+    radial-gradient(circle at 35% 35%,#b7cf61 0 20%,transparent 21%),
+    radial-gradient(circle at 68% 62%,#e76d3c 0 22%,transparent 23%),
+    #292929;
 }
 
-.card h3{
+.crunch{
+  background:
+    radial-gradient(circle,#d6a449 0 17%,#a85f2c 18% 45%,#4b281d 46% 67%,#181818 68%);
+}
+
+.item-info{
+  padding:20px 5px 5px;
+}
+
+.item-info h3{
   font-family:"Playfair Display",serif;
-  font-size:22px;
+  font-size:24px;
+  font-weight:500;
 }
 
-.description{
-  color:#666;
+.ingredients{
+  color:#888;
   font-size:12px;
-  line-height:1.5;
-  margin:8px 0 18px;
+  margin:7px 0 20px;
 }
 
-.price-row{
+.item-bottom{
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
 }
 
 .price{
-  color:#e76f3c;
   font-weight:700;
+  color:#d84b2f;
 }
 
 .add{
-  width:38px;
-  height:38px;
-  border-radius:50%;
+  width:40px;
+  height:40px;
   border:0;
-  background:#f5f2ed;
-  color:#111;
+  border-radius:50%;
+  background:#141414;
+  color:#fff;
   font-size:20px;
   cursor:pointer;
   transition:.3s;
 }
 
 .add:hover{
-  background:#e76f3c;
-  color:white;
+  background:#d84b2f;
   transform:rotate(90deg);
 }
 
-/* STORY */
+/* EXPERIENCE */
 
-.story{
-  padding:130px 7%;
-  text-align:center;
+.experience{
+  padding:120px 6%;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:70px;
+  align-items:center;
 }
 
-.story h2{
+.experience h2{
   font-family:"Playfair Display",serif;
-  font-size:70px;
-  line-height:1;
+  font-size:65px;
+  line-height:.95;
 }
 
-.story h2 span{
-  color:#e76f3c;
+.experience h2 span{
+  color:#d84b2f;
   font-style:italic;
 }
 
-.story p{
-  max-width:600px;
-  margin:30px auto;
+.experience p{
   color:#777;
   line-height:1.8;
+  margin-top:25px;
+  max-width:470px;
+}
+
+.features{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.feature{
+  padding:30px;
+  border:1px solid #252525;
+  border-radius:20px;
+}
+
+.feature strong{
+  font-family:"Playfair Display",serif;
+  font-size:35px;
+  display:block;
+  color:#d84b2f;
+}
+
+.feature span{
+  color:#777;
+  font-size:12px;
 }
 
 /* FOOTER */
 
 footer{
   border-top:1px solid #222;
-  padding:30px 7%;
+  padding:30px 6%;
   display:flex;
   justify-content:space-between;
   color:#555;
-  font-size:13px;
+  font-size:12px;
 }
 
 /* TOAST */
 
 .toast{
   position:fixed;
-  right:25px;
   bottom:25px;
-  background:#f5f2ed;
+  right:25px;
+  background:#f1ede6;
   color:#111;
   padding:15px 22px;
-  border-radius:15px;
+  border-radius:14px;
   transform:translateY(100px);
   opacity:0;
   transition:.4s;
-  z-index:100;
+  z-index:200;
 }
 
 .toast.show{
@@ -498,87 +539,96 @@ footer{
 
 /* MOBILE */
 
-@media(max-width:1000px){
-
-  .cards{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .hero-sushi{
-    width:380px;
-  }
-}
-
-@media(max-width:700px){
-
-  header{
-    padding:0 5%;
-  }
+@media(max-width:900px){
 
   nav{
     display:none;
   }
 
   .hero{
-    padding:70px 5%;
-    flex-direction:column;
+    grid-template-columns:1fr;
     text-align:center;
   }
 
-  .hero-description{
+  .hero-copy{
     margin-left:auto;
     margin-right:auto;
   }
 
-  .hero-sushi{
-    width:100%;
-    height:360px;
-    margin-top:30px;
+  .hero-actions{
+    justify-content:center;
   }
 
-  .hero-sushi::before{
+  .menu-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .experience{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:600px){
+
+  .hero{
+    padding:65px 5%;
+  }
+
+  .hero-visual{
+    min-height:350px;
+  }
+
+  .hero-circle{
     width:300px;
     height:300px;
   }
 
-  .big-roll{
-    width:175px;
-    height:175px;
+  .sushi-stack{
+    width:180px;
+    height:180px;
   }
 
-  .big-roll::before{
-    width:50px;
-    height:50px;
-    top:52px;
-    left:52px;
+  .sushi-stack:before{
+    width:65px;
+    height:65px;
+    top:40px;
+    left:40px;
   }
 
   .menu{
-    padding:80px 5%;
+    padding:75px 5%;
   }
 
-  .menu-title{
+  .menu-head{
     display:block;
   }
 
-  .menu-title h2{
+  .menu-head h2{
     font-size:45px;
   }
 
-  .menu-title p{
-    margin-top:10px;
+  .menu-head p{
+    margin-top:8px;
   }
 
-  .cards{
+  .menu-grid{
     grid-template-columns:1fr;
   }
 
-  .story h2{
-    font-size:50px;
+  .experience{
+    padding:80px 5%;
+  }
+
+  .experience h2{
+    font-size:48px;
+  }
+
+  .features{
+    grid-template-columns:1fr 1fr;
   }
 
   footer{
-flex-direction:column;
+    flex-direction:column;
     gap:10px;
   }
 }
@@ -595,11 +645,11 @@ flex-direction:column;
 
   <nav>
     <a href="#menu">Menu</a>
-    <a href="#story">Our Story</a>
+    <a href="#experience">Experience</a>
   </nav>
 
   <button class="cart">
-    🛒 <span id="cart">0</span>
+    Cart · <span id="cart">0</span>
   </button>
 
 </header>
@@ -607,33 +657,48 @@ flex-direction:column;
 
 <section class="hero">
 
-  <div class="hero-content">
+  <div class="hero-left">
 
-    <div class="label">
-      JAPANESE SUSHI EXPERIENCE
+    <div class="kicker">
+      SUSHI BAR · PRAGUE
     </div>
 
     <h1>
-      Taste the<br>
-      <span>art</span> of sushi.
+      A little<br>
+      piece of <em>Japan.</em>
     </h1>
 
-    <p class="hero-description">
-      Carefully crafted rolls, fresh ingredients
-      and beautiful Japanese flavors.
-      Welcome to SUSHIKRIS.
+    <p class="hero-copy">
+      Handcrafted sushi made with fresh ingredients,
+      clean flavors and a modern Japanese spirit.
     </p>
 
-    <button class="hero-button" onclick="scrollToMenu()">
-      Explore the menu →
-    </button>
+    <div class="hero-actions">
+
+      <button class="primary" onclick="openMenu()">
+        View menu
+      </button>
+
+      <button class="secondary" onclick="openExperience()">
+        Our story
+      </button>
+
+    </div>
 
   </div>
 
 
-  <div class="hero-sushi">
+  <div class="hero-visual">
 
-    <div class="big-roll"></div>
+    <div class="hero-circle"></div>
+
+    <div class="sushi-stack"></div>
+
+    <div class="stamp">
+      FRESH<br>
+      DAILY<br>
+      SUSHI
+    </div>
 
   </div>
 
@@ -642,69 +707,60 @@ flex-direction:column;
 
 <section class="menu" id="menu">
 
-  <div class="menu-title">
+  <div class="menu-head">
 
     <div>
-      <div class="label">
-        OUR MENU
+
+      <div class="kicker">
+        SUSHIKRIS MENU
       </div>
 
       <h2>
-        Pick your roll.
+        Made to crave.
       </h2>
+
     </div>
 
     <p>
-      8 signature creations
+      Freshly prepared every day.
     </p>
 
   </div>
 
 
-  <div class="filters">
+  <div class="categories">
 
-    <button class="filter active">
-      All
-    </button>
-
-    <button class="filter">
-      Salmon
-    </button>
-
-    <button class="filter">
-      Seafood
-    </button>
-
-    <button class="filter">
-      Vegetarian
-    </button>
+    <button class="category active">All</button>
+    <button class="category">Signature</button>
+    <button class="category">Salmon</button>
+    <button class="category">Seafood</button>
+    <button class="category">Vegetarian</button>
 
   </div>
 
 
-  <div class="cards">
+  <div class="menu-grid">
 
-    <!-- 1 -->
 
-    <div class="card">
+    <div class="item">
 
-      <div class="sushi-image">
+      <div class="item-visual">
         <div class="roll salmon"></div>
       </div>
 
-      <div class="card-info">
+      <div class="item-info">
 
-        <h3>Salmon Signature</h3>
+        <h3>Salmon Omakase</h3>
 
-        <p class="description">
-          Fresh salmon · avocado · sesame
+        <p class="ingredients">
+          Salmon · avocado · sesame · rice
         </p>
 
-        <div class="price-row">
+        <div class="item-bottom">
 
           <span class="price">189 Kč</span>
 
-          <button class="add" onclick="addToCart()">
+          <button class="add" onclick="addItem()">
             +
           </button>
 
@@ -715,150 +771,25 @@ flex-direction:column;
     </div>
 
 
-    <!-- 2 -->
+    <div class="item">
 
-    <div class="card">
-
-      <div class="sushi-image">
+      <div class="item-visual">
         <div class="roll tuna"></div>
       </div>
 
-      <div class="card-info">
+      <div class="item-info">
 
-        <h3>Red Tuna</h3>
+        <h3>Akami Tuna</h3>
 
-        <p class="description">
-          Tuna · cucumber · spicy mayo
+        <p class="ingredients">
+          Bluefin tuna · cucumber · nori
         </p>
 
-        <div class="price-row">
-
-          <span class="price">199 Kč</span>
-
-          <button class="add" onclick="addToCart()">
-            +
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- 3 -->
-
-    <div class="card">
-
-      <div class="sushi-image">
-        <div class="roll shrimp"></div>
-      </div>
-
-      <div class="card-info">
-
-        <h3>Shrimp Deluxe</h3>
-
-        <p class="description">
-          Crispy shrimp · avocado · chili
-        </p>
-
-        <div class="price-row">
-
-          <span class="price">209 Kč</span>
-
-          <button class="add" onclick="addToCart()">
-            +
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- 4 -->
-
-    <div class="card">
-
-      <div class="sushi-image">
-        <div class="roll avocado"></div>
-      </div>
-
-      <div class="card-info">
-
-        <h3>Green Garden</h3>
-
-        <p class="description">
-          Avocado · cucumber · sesame
-        </p>
-
-        <div class="price-row">
-
-          <span class="price">159 Kč</span>
-
-          <button class="add" onclick="addToCart()">
-            +
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- 5 -->
-
-    <div class="card">
-
-      <div class="sushi-image">
-        <div class="roll dragon"></div>
-      </div>
-
-      <div class="card-info">
-
-        <h3>Dragon Roll</h3>
-
-        <p class="description">
-          Salmon · avocado · eel sauce
-        </p>
-
-        <div class="price-row">
-
-          <span class="price">229 Kč</span>
-
-          <button class="add" onclick="addToCart()">
-            +
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- 6 -->
-
-    <div class="card">
-
-      <div class="sushi-image">
-        <div class="roll rainbow"></div>
-      </div>
-
-      <div class="card-info">
-
-        <h3>Rainbow Roll</h3>
-
-        <p class="description">
-          Salmon · tuna · avocado · cucumber
-        </p>
-        <div class="price-row">
+        <div class="item-bottom">
 
           <span class="price">219 Kč</span>
 
-          <button class="add" onclick="addToCart()">
+          <button class="add" onclick="addItem()">
             +
           </button>
 
@@ -869,27 +800,111 @@ flex-direction:column;
     </div>
 
 
-    <!-- 7 -->
+    <div class="item">
 
-    <div class="card">
+      <div class="item-visual">
+        <div class="roll shrimp"></div>
+      </div>
 
-      <div class="sushi-image">
+      <div class="item-info">
+
+        <h3>Crispy Ebi</h3>
+
+        <p class="ingredients">
+          Shrimp · avocado · spicy mayo
+        </p>
+
+        <div class="item-bottom">
+
+          <span class="price">209 Kč</span>
+
+          <button class="add" onclick="addItem()">
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="item">
+
+      <div class="item-visual">
+        <div class="roll dragon"></div>
+      </div>
+
+      <div class="item-info">
+
+        <h3>Dragon Roll</h3>
+        <p class="ingredients">
+          Eel · avocado · sesame · eel sauce
+        </p>
+
+        <div class="item-bottom">
+
+          <span class="price">239 Kč</span>
+
+          <button class="add" onclick="addItem()">
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="item">
+
+      <div class="item-visual">
+        <div class="roll rainbow"></div>
+      </div>
+
+      <div class="item-info">
+
+        <h3>Rainbow Roll</h3>
+
+        <p class="ingredients">
+          Salmon · tuna · avocado · cucumber
+        </p>
+
+        <div class="item-bottom">
+
+          <span class="price">229 Kč</span>
+
+          <button class="add" onclick="addItem()">
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="item">
+
+      <div class="item-visual">
         <div class="roll spicy"></div>
       </div>
 
-      <div class="card-info">
+      <div class="item-info">
 
-        <h3>Spicy Fire</h3>
+        <h3>Fire Salmon</h3>
 
-        <p class="description">
-          Salmon · spicy sauce · chili
+        <p class="ingredients">
+          Salmon · chili · spicy sauce
         </p>
 
-        <div class="price-row">
+        <div class="item-bottom">
 
           <span class="price">199 Kč</span>
 
-          <button class="add" onclick="addToCart()">
+          <button class="add" onclick="addItem()">
             +
           </button>
 
@@ -900,27 +915,25 @@ flex-direction:column;
     </div>
 
 
-    <!-- 8 -->
+    <div class="item">
 
-    <div class="card">
-
-      <div class="sushi-image">
-        <div class="roll veggie"></div>
+      <div class="item-visual">
+        <div class="roll avocado"></div>
       </div>
 
-      <div class="card-info">
+      <div class="item-info">
 
-        <h3>Tokyo Veggie</h3>
+        <h3>Green Tokyo</h3>
 
-        <p class="description">
-          Avocado · carrot · cucumber · sesame
+        <p class="ingredients">
+          Avocado · cucumber · edamame · sesame
         </p>
 
-        <div class="price-row">
+        <div class="item-bottom">
 
-          <span class="price">149 Kč</span>
+          <span class="price">159 Kč</span>
 
-          <button class="add" onclick="addToCart()">
+          <button class="add" onclick="addItem()">
             +
           </button>
 
@@ -929,41 +942,96 @@ flex-direction:column;
       </div>
 
     </div>
+
+
+    <div class="item">
+
+      <div class="item-visual">
+        <div class="roll crunch"></div>
+      </div>
+
+      <div class="item-info">
+
+        <h3>Crunchy Ebi</h3>
+
+        <p class="ingredients">
+          Shrimp · crispy topping · avocado
+        </p>
+
+        <div class="item-bottom">
+
+          <span class="price">219 Kč</span>
+
+          <button class="add" onclick="addItem()">
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
 
   </div>
 
 </section>
 
 
-<section class="story" id="story">
+<section class="experience" id="experience">
 
-  <div class="label">
-    SUSHIKRIS
+  <div>
+
+    <div class="kicker">
+      THE SUSHIKRIS WAY
+    </div>
+
+    <h2>
+      Less noise.<br>
+      More <span>flavor.</span>
+    </h2>
+
+    <p>
+      We believe great sushi does not need to be complicated.
+      Fresh ingredients, thoughtful combinations and
+      beautiful presentation are all you need.
+    </p>
+
   </div>
 
-  <h2>
-    Simple food.<br>
-    <span>Beautiful moments.</span>
-  </h2>
 
-  <p>
-    SUSHIKRIS is a creative sushi concept
-    inspired by Japanese minimalism,
-    fresh ingredients and modern design.
-  </p>
+  <div class="features">
+
+    <div class="feature">
+      <strong>01</strong>
+      <span>Fresh ingredients</span>
+    </div>
+
+    <div class="feature">
+      <strong>02</strong>
+      <span>Made to order</span>
+    </div>
+
+    <div class="feature">
+      <strong>03</strong>
+      <span>Japanese inspired</span>
+    </div>
+
+    <div class="feature">
+      <strong>04</strong>
+      <span>Modern experience</span>
+    </div>
+
+  </div>
 
 </section>
 
 
 <footer>
 
-  <span>
-    © 2026 SUSHIKRIS
-  </span>
+  <span>© 2026 SUSHIKRIS</span>
 
-  <span>
-    Crafted with love & sushi 🍣
-  </span>
+  <span>Japanese inspired · Prague</span>
 
 </footer>
 
@@ -977,7 +1045,7 @@ flex-direction:column;
 
 let cart = 0;
 
-function addToCart(){
+function addItem(){
 
   cart++;
 
@@ -987,13 +1055,13 @@ function addToCart(){
 
   toast.classList.add("show");
 
-  setTimeout(() => {
+  setTimeout(function(){
     toast.classList.remove("show");
-  },1800);
+  },1600);
 
 }
 
-function scrollToMenu(){
+function openMenu(){
 
   document
     .getElementById("menu")
@@ -1002,6 +1070,36 @@ function scrollToMenu(){
     });
 
 }
+
+function openExperience(){
+
+  document
+    .getElementById("experience")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+}
+
+
+/* CATEGORY BUTTONS */
+
+const categories =
+document.querySelectorAll(".category");
+
+categories.forEach(function(button){
+
+  button.addEventListener("click",function(){
+
+    categories.forEach(function(item){
+      item.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+  });
+
+});
 
 </script>
 
