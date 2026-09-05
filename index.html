@@ -1,315 +1,475 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SUSHIKRIS 🍣</title>
+<title>SUSHIKRIS — Japanese Sushi</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background: #fff8f2;
-  color: #171717;
+  background: #0d0d0d;
+  color: #f5f2ed;
+  font-family: "DM Sans", sans-serif;
   overflow-x: hidden;
 }
 
-/* HEADER */
+/* NAVIGATION */
 
 header {
+  height: 90px;
+  padding: 0 7%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 25px 7%;
-  position: relative;
-  z-index: 5;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,.08);
 }
 
 .logo {
   font-size: 24px;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -1px;
 }
 
 .logo span {
-  color: #ff6b35;
+  color: #e86f3d;
 }
 
 nav {
   display: flex;
-  gap: 30px;
+  gap: 35px;
 }
 
 nav a {
+  color: #aaa;
   text-decoration: none;
-  color: #222;
   font-size: 14px;
-  font-weight: 600;
+  transition: .3s;
+}
+
+nav a:hover {
+  color: #fff;
 }
 
 .cart {
-  background: #171717;
+  border: 1px solid rgba(255,255,255,.15);
+  background: transparent;
   color: white;
-  border: none;
-  padding: 12px 18px;
+  padding: 11px 18px;
   border-radius: 30px;
   cursor: pointer;
+  transition: .3s;
+}
+
+.cart:hover {
+  background: #fff;
+  color: #111;
 }
 
 /* HERO */
 
 .hero {
-  min-height: 620px;
+  min-height: 700px;
+  padding: 70px 7%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 50px 7%;
   position: relative;
 }
 
-.hero-text {
-  max-width: 520px;
+.hero-content {
+  max-width: 570px;
   z-index: 2;
 }
 
-.small-title {
-  color: #ff6b35;
-  font-weight: bold;
-  margin-bottom: 15px;
-  letter-spacing: 2px;
+.eyebrow {
+  color: #e86f3d;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  margin-bottom: 25px;
 }
 
 h1 {
-  font-size: clamp(55px, 8vw, 105px);
+  font-family: "Playfair Display", serif;
+  font-size: clamp(60px, 8vw, 110px);
   line-height: .88;
-  letter-spacing: -6px;
-  margin-bottom: 30px;
+  font-weight: 600;
+  letter-spacing: -5px;
 }
 
 h1 span {
-  color: #ff6b35;
+  color: #e86f3d;
+  font-style: italic;
 }
 
-.hero p {
-  font-size: 18px;
-  line-height: 1.6;
-  color: #666;
-  max-width: 430px;
-}
-
-.order-btn {
+.hero-text {
+  color: #8e8e8e;
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 420px;
   margin-top: 30px;
-  padding: 17px 28px;
+}
+
+.hero-button {
+  margin-top: 32px;
+  padding: 16px 28px;
   border: none;
-  border-radius: 40px;
-  background: #ff6b35;
+  border-radius: 50px;
+  background: #e86f3d;
   color: white;
-  font-weight: bold;
-  font-size: 15px;
+  font-weight: 700;
   cursor: pointer;
   transition: .3s;
 }
 
-.order-btn:hover {
+.hero-button:hover {
   transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(232,111,61,.25);
 }
 
-/* SUSHI */
+/* SUSHI VISUAL */
 
-.sushi-area {
-  width: 430px;
-  height: 430px;
+.sushi-wrapper {
+  width: 470px;
+  height: 470px;
   position: relative;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+}
+
+.glow {
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: rgba(232,111,61,.12);
+  filter: blur(60px);
+  animation: pulse 4s infinite;
 }
 
 .plate {
-  width: 350px;
-  height: 350px;
-  background: white;
+  width: 380px;
+  height: 380px;
   border-radius: 50%;
-  box-shadow: 0 25px 60px rgba(0,0,0,.12);
+  background:
+    radial-gradient(circle at center,
+    #202020 0%,
+    #171717 55%,
+    #101010 70%,
+    #252525 71%,
+    #101010 73%);
+  box-shadow:
+    0 40px 80px rgba(0,0,0,.6),
+    inset 0 0 30px rgba(255,255,255,.03);
   display: flex;
-  align-items: center;
   justify-content: center;
-  animation: float 4s ease-in-out infinite;
+  align-items: center;
+  animation: float 5s ease-in-out infinite;
+  position: relative;
 }
+
+/* realistic CSS sushi */
 
 .sushi {
-  font-size: 230px;
-  filter: drop-shadow(0 20px 15px rgba(0,0,0,.15));
-  animation: rotateSushi 6s ease-in-out infinite;
+  width: 210px;
+  height: 150px;
+  position: relative;
+  transform: rotate(-7deg);
+  filter: drop-shadow(0 25px 18px rgba(0,0,0,.7));
 }
+
+.rice {
+  position: absolute;
+  width: 190px;
+  height: 125px;
+  left: 10px;
+  top: 20px;
+  background:
+    radial-gradient(circle at 20% 30%, #fff 0 5%, transparent 6%),
+    radial-gradient(circle at 45% 65%, #ddd 0 4%, transparent 5%),
+    radial-gradient(circle at 70% 35%, #fff 0 5%, transparent 6%),
+    radial-gradient(circle at 85% 70%, #d7d7d7 0 4%, transparent 5%),
+    linear-gradient(145deg, #f8f5ef, #d5d0c8);
+  border-radius: 45% 45% 40% 40%;
+}
+
+.salmon {
+  position: absolute;
+  width: 185px;
+  height: 62px;
+  left: 13px;
+  top: 7px;
+  border-radius: 45px 45px 25px 25px;
+  background:
+    repeating-linear-gradient(
+      12deg,
+      #ff7658 0px,
+      #ff7658 9px,
+      #d94f38 10px,
+      #ff8565 13px
+    );
+  box-shadow:
+    inset 0 -8px 15px rgba(100,20,10,.2),
+    inset 0 5px 10px rgba(255,255,255,.18);
+}
+
+.nori {
+  position: absolute;
+  width: 205px;
+  height: 25px;
+  left: 2px;
+  top: 78px;
+  background: linear-gradient(90deg,#101010,#252525,#101010);
+  border-radius: 20px;
+  opacity: .95;
+}
+
+.avocado {
+  position: absolute;
+  width: 50px;
+  height: 32px;
+  background: #9ba94d;
+  border-radius: 50%;
+  right: 30px;
+  top: 65px;
+  transform: rotate(20deg);
+  box-shadow: inset 8px 5px 10px rgba(255,255,255,.18);
+}
+
+.sesame {
+  position: absolute;
+  width: 7px;
+  height: 4px;
+  background: #eee6c9;
+  border-radius: 50%;
+  transform: rotate(30deg);
+}
+
+.s1 { top: 30px; left: 55px; }
+.s2 { top: 42px; left: 100px; transform: rotate(-20deg); }
+.s3 { top: 28px; left: 135px; transform: rotate(40deg); }
+.s4 { top: 52px; left: 155px; transform: rotate(-30deg); }
 
 @keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+  0%,100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-13px) rotate(2deg);
+  }
 }
 
-@keyframes rotateSushi {
-  0%,100% { transform: rotate(-4deg); }
-  50% { transform: rotate(4deg); }
+@keyframes pulse {
+  0%,100% {
+    transform: scale(.95);
+    opacity: .6;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
 }
 
-/* FLOATING ELEMENTS */
+/* FLOATING INGREDIENTS */
 
-.ingredient {
+.floating {
   position: absolute;
-  font-size: 35px;
-  animation: ingredientFloat 4s ease-in-out infinite;
+  font-size: 28px;
+  animation: floating 5s ease-in-out infinite;
+  opacity: .8;
 }
 
-.one {
-  top: 20px;
-  right: 50px;
+.f1 {
+  top: 35px;
+  right: 60px;
 }
 
-.two {
-  bottom: 20px;
+.f2 {
+  bottom: 35px;
   left: 30px;
   animation-delay: 1s;
 }
 
-.three {
-  top: 100px;
-  left: 10px;
+.f3 {
+  top: 130px;
+  left: 0;
   animation-delay: 2s;
 }
 
-@keyframes ingredientFloat {
-  0%,100% { transform: translateY(0) rotate(0); }
-  50% { transform: translateY(-20px) rotate(15deg); }
+@keyframes floating {
+  0%,100% {
+    transform: translateY(0) rotate(0);
+  }
+
+  50% {
+    transform: translateY(-18px) rotate(12deg);
+  }
 }
 
 /* MENU */
 
 .menu {
-  padding: 80px 7%;
-  background: #171717;
-  color: white;
+  padding: 110px 7%;
+  background: #121212;
 }
 
-.section-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  margin-bottom: 40px;
+.section-label {
+  color: #e86f3d;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  margin-bottom: 12px;
 }
 
-.section-title h2 {
-  font-size: 50px;
-  letter-spacing: -3px;
-}
-
-.section-title p {
-  color: #aaa;
+.section-heading {
+  font-family: "Playfair Display", serif;
+  font-size: 58px;
+  margin-bottom: 55px;
 }
 
 .cards {
   display: grid;
   grid-template-columns: repeat(3,1fr);
-  gap: 20px;
+  gap: 22px;
 }
 
 .card {
-  background: #242424;
-  border-radius: 25px;
-  padding: 25px;
-  transition: .3s;
-  cursor: pointer;
+  background: #191919;
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 24px;
+  padding: 18px;
+  transition: .4s;
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  background: #2d2d2d;
+  transform: translateY(-10px);
+  border-color: rgba(232,111,61,.35);
 }
 
 .card-image {
-  height: 210px;
-  background: #fff8f2;
-  border-radius: 20px;
+  height: 220px;
+  border-radius: 18px;
+  background: #242424;
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 115px;
-  margin-bottom: 20px;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.food {
+  font-size: 100px;
+  filter: drop-shadow(0 20px 15px rgba(0,0,0,.5));
+  transition: .4s;
+}
+
+.card:hover .food {
+  transform: scale(1.1) rotate(4deg);
+}
+
+.card-info {
+  padding: 20px 5px 5px;
 }
 
 .card h3 {
-  font-size: 23px;
-  margin-bottom: 8px;
+  font-family: "Playfair Display", serif;
+  font-size: 25px;
 }
 
-.card p {
-  color: #999;
-  font-size: 14px;
-  margin-bottom: 18px;
+.description {
+  color: #777;
+  font-size: 13px;
+  margin: 8px 0 20px;
+}
+
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .price {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.price strong {
-  color: #ff6b35;
-  font-size: 20px;
+  color: #e86f3d;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .add {
-  border: none;
-  background: white;
-  color: #171717;
   width: 40px;
   height: 40px;
+  border: none;
   border-radius: 50%;
-  cursor: pointer;
+  background: #eee;
+  color: #111;
   font-size: 20px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.add:hover {
+  background: #e86f3d;
+  color: white;
+  transform: rotate(90deg);
 }
 
 /* ABOUT */
 
 .about {
-  padding: 100px 7%;
+  padding: 120px 7%;
   text-align: center;
 }
 
-.
-about h2 {
-  font-size: 55px;
-  letter-spacing: -3px;
-  margin-bottom: 20px;
+.about h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(45px,6vw,75px);
+  line-height: 1;
+}
+
+.about h2 span {
+  color: #e86f3d;
+  font-style: italic;
 }
 
 .about p {
-  max-width: 600px;
-  margin: auto;
+  max-width: 550px;
+  margin: 25px auto 0;
   color: #777;
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
 /* FOOTER */
 
 footer {
   padding: 30px 7%;
+  border-top: 1px solid rgba(255,255,255,.08);
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid #ddd;
-  color: #777;
+  color: #666;
+  font-size: 13px;
 }
 
 /* MOBILE */
 
-@media(max-width: 800px) {
+@media(max-width: 850px) {
+
+  header {
+    height: 75px;
+  }
 
   nav {
     display: none;
@@ -318,38 +478,35 @@ footer {
   .hero {
     flex-direction: column;
     text-align: center;
-    padding-top: 40px;
+    padding-top: 60px;
   }
 
-  .hero p {
+  .hero-text {
     margin: auto;
   }
 
-  .sushi-area {
+  .hero-text p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .sushi-wrapper {
     width: 100%;
-    height: 350px;
+    height: 390px;
     margin-top: 30px;
   }
 
   .plate {
-    width: 290px;
-    height: 290px;
-  }
-
-  .sushi {
-    font-size: 180px;
+    width: 320px;
+    height: 320px;
   }
 
   .cards {
     grid-template-columns: 1fr;
   }
 
-  .section-title {
-    display: block;
-  }
-
-  .section-title p {
-    margin-top: 10px;
+  .section-heading {
+    font-size: 45px;
   }
 
   footer {
@@ -365,16 +522,16 @@ footer {
 <header>
 
   <div class="logo">
-    SUSHI<span>KRIS</span> 🍣
+    SUSHI<span>KRIS</span>
   </div>
 
   <nav>
-    <a href="#menu">Menu</a>
+<a href="#menu">Menu</a>
     <a href="#about">About</a>
   </nav>
 
   <button class="cart">
-    🛒 <span id="cartCount">0</span>
+    Cart <span id="cartCount">0</span>
   </button>
 
 </header>
@@ -382,39 +539,54 @@ footer {
 
 <section class="hero">
 
-  <div class="hero-text">
+  <div class="hero-content">
 
-    <div class="small-title">
-      FRESH • SIMPLE • SUSHI
+    <div class="eyebrow">
+      JAPANESE FOOD · MADE WITH LOVE
     </div>
 
     <h1>
-      SUSHI<br>
-      <span>MAKES</span><br>
-      HAPPY.
+      Taste the<br>
+      <span>art</span> of sushi.
     </h1>
 
-    <p>
-      Маленький кусочек Японии,
-      созданный с любовью. Выбирай свой
-      любимый ролл и наслаждайся.
+    <p class="hero-text">
+      Fresh ingredients, beautiful details and
+      a little bit of Japanese soul. Discover
+      sushi made to make you smile.
     </p>
 
-    <button class="order-btn" onclick="scrollToMenu()">
-      Выбрать ролл →
+    <button class="hero-button" onclick="goToMenu()">
+      Explore the menu →
     </button>
 
   </div>
 
 
-  <div class="sushi-area">
+  <div class="sushi-wrapper">
 
-    <div class="ingredient one">🥑</div>
-    <div class="ingredient two">🍋</div>
-    <div class="ingredient three">🌿</div>
+    <div class="glow"></div>
+
+    <div class="floating f1">🥑</div>
+    <div class="floating f2">🍋</div>
+    <div class="floating f3">🌿</div>
 
     <div class="plate">
-      <div class="sushi">🍣</div>
+
+      <div class="sushi">
+
+        <div class="rice"></div>
+        <div class="salmon"></div>
+        <div class="nori"></div>
+        <div class="avocado"></div>
+
+        <div class="sesame s1"></div>
+        <div class="sesame s2"></div>
+        <div class="sesame s3"></div>
+        <div class="sesame s4"></div>
+
+      </div>
+
     </div>
 
   </div>
@@ -424,18 +596,13 @@ footer {
 
 <section class="menu" id="menu">
 
-  <div class="section-title">
-
-    <div>
-      <div class="small-title">OUR MENU</div>
-      <h2>Choose your roll.</h2>
-    </div>
-
-    <p>
-      Made for sushi lovers 🍣
-    </p>
-
+  <div class="section-label">
+    OUR SELECTION
   </div>
+
+  <h2 class="section-heading">
+    Choose your favorite.
+  </h2>
 
 
   <div class="cards">
@@ -443,44 +610,29 @@ footer {
     <div class="card">
 
       <div class="card-image">
-        🍣
+        <div class="food">🍣</div>
       </div>
 
-      <h3>Salmon Roll</h3>
+      <div class="card-info">
 
-      <p>
-        Лосось • рис • авокадо
-      </p>
+        <h3>Salmon Signature</h3>
 
-      <div class="price">
-        <strong>189 Kč</strong>
+        <p class="description">
+          Fresh salmon · avocado · rice · nori
+        </p>
 
-        <button class="add" onclick="addRoll()">
-          +
-        </button>
-      </div>
+        <div class="price-row">
 
-    </div>
+          <div class="price">
+            189 Kč
+          </div>
 
+          <button class="add" onclick="addToCart()">
+            +
+          </button>
 
-    <div class="card">
+        </div>
 
-      <div class="card-image">
-        🍙
-      </div>
-
-      <h3>California</h3>
-
-      <p>
-        Краб • авокадо • огурец
-      </p>
-
-      <div class="price">
-        <strong>169 Kč</strong>
-
-        <button class="add" onclick="addRoll()">
-          +
-        </button>
       </div>
 
     </div>
@@ -489,21 +641,60 @@ footer {
     <div class="card">
 
       <div class="card-image">
-        🍤
+        <div class="food">🍤</div>
       </div>
 
-      <h3>Shrimp Roll</h3>
+      <div class="card-info">
 
-      <p>
-        Креветка • авокадо • соус
-      </p>
+        <h3>Shrimp Deluxe</h3>
 
-      <div class="price">
-        <strong>199 Kč</strong>
+        <p class="description">
+          Crispy shrimp · avocado · spicy mayo
+        </p>
 
-        <button class="add" onclick="addRoll()">
-          +
-        </button>
+        <div class="price-row">
+
+          <div class="price">
+            199 Kč
+          </div>
+
+          <button class="add" onclick="addToCart()">
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="card-image">
+        <div class="food">🍙</div>
+      </div>
+
+      <div class="card-info">
+
+        <h3>California</h3>
+
+        <p class="description">
+          Crab · cucumber · avocado · sesame
+        </p>
+
+        <div class="price-row">
+
+          <div class="price">
+            169 Kč
+          </div>
+
+          <button class="add" onclick="addToCart()">
+            +
+          </button>
+
+        </div>
+
       </div>
 
     </div>
@@ -515,20 +706,20 @@ footer {
 
 <section class="about" id="about">
 
-  <div class="small-title">
+  <div class="section-label">
     SUSHIKRIS
   </div>
 
   <h2>
     Good food.<br>
-    Good mood. ❤️
+    <span>Good mood.</span>
   </h2>
 
   <p>
-    SUSHIKRIS — маленький концепт
-    современного sushi-бренда.
-    Этот сайт создан как дизайн-проект
-    для портфолио.
+    SUSHIKRIS is a small creative concept
+    for a modern Japanese sushi brand.
+    Designed with simplicity, movement and
+    a love for beautiful food.
   </p>
 
 </section>
@@ -541,7 +732,7 @@ footer {
   </div>
 
   <div>
-    Made with 🍣 & ❤️
+    Made with love & sushi 🍣
   </div>
 
 </footer>
@@ -551,20 +742,15 @@ footer {
 
 let cart = 0;
 
-function addRoll() {
+function addToCart() {
 
   cart++;
 
   document.getElementById("cartCount").textContent = cart;
 
-  alert(
-    "🍣 Ролл добавлен!\n\n" +
-    "В корзине: " + cart
-  );
-
 }
 
-function scrollToMenu() {
+function goToMenu() {
 
   document
     .getElementById("menu")
